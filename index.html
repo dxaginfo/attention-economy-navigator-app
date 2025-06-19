@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attention Economy Navigator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-graph-up me-2"></i>
+                Attention Economy Navigator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analyze">Analyze</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">Reports</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="card-title mb-4">Brand Presence Monitor</h2>
+                        <div class="brand-input-section mb-4">
+                            <form id="brand-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="brandName" class="form-label">Brand Name</label>
+                                        <input type="text" class="form-control" id="brandName" placeholder="Enter your brand name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="industry" class="form-label">Industry</label>
+                                        <select class="form-select" id="industry">
+                                            <option selected>Select industry</option>
+                                            <option value="sports">Sports & Entertainment</option>
+                                            <option value="retail">Retail</option>
+                                            <option value="technology">Technology</option>
+                                            <option value="finance">Finance</option>
+                                            <option value="healthcare">Healthcare</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Select Platforms to Monitor</label>
+                                        <div class="d-flex flex-wrap gap-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="twitter" id="twitterCheck" checked>
+                                                <label class="form-check-label" for="twitterCheck">
+                                                    <i class="bi bi-twitter text-info"></i> Twitter
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="facebook" id="facebookCheck" checked>
+                                                <label class="form-check-label" for="facebookCheck">
+                                                    <i class="bi bi-facebook text-primary"></i> Facebook
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="instagram" id="instagramCheck" checked>
+                                                <label class="form-check-label" for="instagramCheck">
+                                                    <i class="bi bi-instagram text-danger"></i> Instagram
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="linkedin" id="linkedinCheck">
+                                                <label class="form-check-label" for="linkedinCheck">
+                                                    <i class="bi bi-linkedin text-primary"></i> LinkedIn
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="news" id="newsCheck">
+                                                <label class="form-check-label" for="newsCheck">
+                                                    <i class="bi bi-newspaper text-dark"></i> News Sites
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-search me-2"></i>Analyze Brand Presence
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4" id="results-section" style="display: none;">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="card-title mb-0">Brand Presence Analysis</h2>
+                            <button type="button" class="btn btn-outline-primary btn-sm" id="export-report">
+                                <i class="bi bi-download me-1"></i>Export Report
+                            </button>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="card-title mb-0">Message Consistency Score</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center mb-3">
+                                            <div class="consistency-score-gauge">
+                                                <div class="score-value" id="consistencyScore">78</div>
+                                                <canvas id="consistencyGauge" width="200" height="100"></canvas>
+                                            </div>
+                                        </div>
+                                        <p class="consistency-analysis">Your brand messaging is <strong>mostly consistent</strong> across platforms, but there are some variations in tone between social media and news mentions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="card-title mb-0">Platform Distribution</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="platformDistribution" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="card-title mb-0">Key Message Analysis</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Key Message</th>
+                                                        <th>Frequency</th>
+                                                        <th>Consistency</th>
+                                                        <th>Platforms</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="key-messages-table">
+                                                    <tr>
+                                                        <td>"Innovation in sports technology"</td>
+                                                        <td>High</td>
+                                                        <td><span class="badge bg-success">Consistent</span></td>
+                                                        <td>
+                                                            <span class="badge bg-secondary me-1"><i class="bi bi-twitter"></i></span>
+                                                            <span class="badge bg-secondary me-1"><i class="bi bi-linkedin"></i></span>
+                                                            <span class="badge bg-secondary"><i class="bi bi-newspaper"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>"Fan engagement solutions"</td>
+                                                        <td>Medium</td>
+                                                        <td><span class="badge bg-warning">Variations</span></td>
+                                                        <td>
+                                                            <span class="badge bg-secondary me-1"><i class="bi bi-instagram"></i></span>
+                                                            <span class="badge bg-secondary me-1"><i class="bi bi-facebook"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>"Global sports partnership"</td>
+                                                        <td>Low</td>
+                                                        <td><span class="badge bg-danger">Inconsistent</span></td>
+                                                        <td>
+                                                            <span class="badge bg-secondary"><i class="bi bi-newspaper"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light">
+                                        <h5 class="card-title mb-0">Platform-Specific Insights</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="nav nav-tabs" id="platform-tabs" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="twitter-tab" data-bs-toggle="tab" data-bs-target="#twitter" type="button" role="tab">Twitter</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="facebook-tab" data-bs-toggle="tab" data-bs-target="#facebook" type="button" role="tab">Facebook</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="instagram-tab" data-bs-toggle="tab" data-bs-target="#instagram" type="button" role="tab">Instagram</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content mt-3" id="platform-tab-content">
+                                            <div class="tab-pane fade show active" id="twitter" role="tabpanel">
+                                                <div class="platform-insights">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h6>Message Tone</h6>
+                                                            <div class="progress mb-3" style="height: 20px;">
+                                                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%">Professional (65%)</div>
+                                                            </div>
+                                                            <div class="progress mb-3" style="height: 20px;">
+                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%">Casual (25%)</div>
+                                                            </div>
+                                                            <div class="progress mb-3" style="height: 20px;">
+                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 10%">Promotional (10%)</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <h6>Key Recommendations</h6>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">Maintain professional tone which resonates well with audience</li>
+                                                                <li class="list-group-item">Increase frequency of industry news sharing</li>
+                                                                <li class="list-group-item">Add more visual elements to improve engagement</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="facebook" role="tabpanel">
+                                                <!-- Facebook content will be populated dynamically -->
+                                                <div class="platform-insights">
+                                                    <p>Facebook platform analysis is loading...</p>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="instagram" role="tabpanel">
+                                                <!-- Instagram content will be populated dynamically -->
+                                                <div class="platform-insights">
+                                                    <p>Instagram platform analysis is loading...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Content Schedule Optimizer</h5>
+                                        <button class="btn btn-sm btn-outline-primary" id="generate-schedule">
+                                            <i class="bi bi-calendar-plus me-1"></i>Generate Optimal Schedule
+                                        </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="alert alert-info mb-3">
+                                            <i class="bi bi-info-circle me-2"></i>Based on your brand presence analysis, we've identified optimal posting times for each platform.
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="scheduler-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Platform</th>
+                                                        <th>Monday</th>
+                                                        <th>Tuesday</th>
+                                                        <th>Wednesday</th>
+                                                        <th>Thursday</th>
+                                                        <th>Friday</th>
+                                                        <th>Saturday</th>
+                                                        <th>Sunday</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i class="bi bi-twitter text-info"></i> Twitter</td>
+                                                        <td>9:00 AM<br>3:00 PM</td>
+                                                        <td>10:30 AM</td>
+                                                        <td>9:00 AM<br>2:00 PM</td>
+                                                        <td>11:00 AM<br>4:30 PM</td>
+                                                        <td>10:00 AM<br>3:00 PM</td>
+                                                        <td>12:00 PM</td>
+                                                        <td>3:00 PM</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="bi bi-facebook text-primary"></i> Facebook</td>
+                                                        <td>12:00 PM</td>
+                                                        <td>1:00 PM</td>
+                                                        <td>12:30 PM</td>
+                                                        <td>1:30 PM</td>
+                                                        <td>11:00 AM</td>
+                                                        <td>12:00 PM</td>
+                                                        <td>2:00 PM</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="bi bi-instagram text-danger"></i> Instagram</td>
+                                                        <td>11:00 AM<br>7:00 PM</td>
+                                                        <td>5:30 PM</td>
+                                                        <td>6:00 PM</td>
+                                                        <td>11:30 AM<br>8:00 PM</td>
+                                                        <td>12:00 PM<br>7:30 PM</td>
+                                                        <td>11:00 AM</td>
+                                                        <td>6:00 PM</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Attention Economy Navigator | For brands navigating the digital landscape</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
